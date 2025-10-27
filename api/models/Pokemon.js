@@ -8,6 +8,7 @@ Pokemon.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
 
     hp: {
@@ -43,6 +44,5 @@ Pokemon.init(
   {
     sequelize,
     tableName: "pokemon",
-    timestamps: true,
   }
 );

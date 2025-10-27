@@ -17,6 +17,5 @@ Team.init(
   {
     sequelize,
     tableName: "team",
-    timestamps: true,
   }
 );

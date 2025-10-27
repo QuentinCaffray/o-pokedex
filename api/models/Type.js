@@ -9,7 +9,6 @@ Type.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
     color: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,6 +17,5 @@ Type.init(
   {
     sequelize,
     tableName: "type",
-    timestamps: true,
   }
 );
