@@ -1,7 +1,15 @@
 {
+  "name": "e01-opokedex-quentincaffray",
+  "version": "1.0.0",
+  "description": "API Pokédex avec Sequelize",
+  "type": "module",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "nodemon api/server.js"
+  },
   "dependencies": {
     "dotenv": "^17.2.3",
-    "excalidraw": "^0.6.4",
     "express": "^5.1.0",
     "pg": "^8.16.3",
     "sequelize": "^6.37.7"
