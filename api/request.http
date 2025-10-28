@@ -3,3 +3,7 @@ GET http://localhost:3000/
 
 ### Test de la route GET /pokemons
 GET http://localhost:3000/pokemons
+
+### Test de la route byId GET /pokemons/:id
+GET http://localhost:3000/pokemons/151
+

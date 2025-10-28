@@ -1,4 +1,4 @@
-import { sequelize } from "./models/index.js";
+import { sequelize } from "../models/index.js";
 
 async function createDatabase() {
   try {

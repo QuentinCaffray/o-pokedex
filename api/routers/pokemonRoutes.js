@@ -1,9 +1,18 @@
 import express from "express";
-import { getAllPokemons } from "../controllers/pokemonController.js";
+import {
+  getAllPokemons,
+  getPokemonById,
+} from "../controllers/pokemonController.js";
 
 const router = express.Router();
 
 router.get("/", getAllPokemons);
-// router.get("/:id", getPokemonById);  // ← Commente ou enlève cette ligne pour le moment
+
+// Route de test statique (dans une fonction !)
+router.get("/test", (req, res) => {
+  res.json({ message: "Route /test fonctionne !" });
+});
+
+router.get("/:id", getPokemonById);
 
 export default router;

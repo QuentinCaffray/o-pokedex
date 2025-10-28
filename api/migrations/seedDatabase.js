@@ -1546,40 +1546,169 @@ async function seedDatabase() {
     // 3. Associer les Pokémons à leurs Types
     console.log("📝 Association Pokémon ↔ Type...");
 
-    // Récupérer les instances (besoin pour setTypes)
-    const bulbizarre = await Pokemon.findByPk(1);
-    await bulbizarre.setTypes([10, 11]); // Plante, Poison
+    const pokemonTypes = [
+      { pokemonId: 1, typeIds: [10, 11] }, // Bulbizarre - Plante, Poison
+      { pokemonId: 2, typeIds: [10, 11] }, // Herbizarre - Plante, Poison
+      { pokemonId: 3, typeIds: [10, 11] }, // Florizarre - Plante, Poison
+      { pokemonId: 4, typeIds: [6] }, // Salamèche - Feu
+      { pokemonId: 5, typeIds: [6] }, // Reptincel - Feu
+      { pokemonId: 6, typeIds: [6, 17] }, // Dracaufeu - Feu, Vol
+      { pokemonId: 7, typeIds: [4] }, // Carapuce - Eau
+      { pokemonId: 8, typeIds: [4] }, // Carabaffe - Eau
+      { pokemonId: 9, typeIds: [4] }, // Tortank - Eau
+      { pokemonId: 10, typeIds: [8] }, // Chenipan - Insecte
+      { pokemonId: 11, typeIds: [8] }, // Chrysacier - Insecte
+      { pokemonId: 12, typeIds: [8, 17] }, // Papilusion - Insecte, Vol
+      { pokemonId: 13, typeIds: [8, 11] }, // Aspicot - Insecte, Poison
+      { pokemonId: 14, typeIds: [8, 11] }, // Coconfort - Insecte, Poison
+      { pokemonId: 15, typeIds: [8, 11] }, // Dardargnan - Insecte, Poison
+      { pokemonId: 16, typeIds: [9, 17] }, // Roucool - Normal, Vol
+      { pokemonId: 17, typeIds: [9, 17] }, // Roucoups - Normal, Vol
+      { pokemonId: 18, typeIds: [9, 17] }, // Roucarnage - Normal, Vol
+      { pokemonId: 19, typeIds: [9] }, // Rattata - Normal
+      { pokemonId: 20, typeIds: [9] }, // Rattatac - Normal
+      { pokemonId: 21, typeIds: [9, 17] }, // Piafabec - Normal, Vol
+      { pokemonId: 22, typeIds: [9, 17] }, // Rapasdepic - Normal, Vol
+      { pokemonId: 23, typeIds: [11] }, // Abo - Poison
+      { pokemonId: 24, typeIds: [11] }, // Arbok - Poison
+      { pokemonId: 25, typeIds: [5] }, // Pikachu - Électrik
+      { pokemonId: 26, typeIds: [5] }, // Raichu - Électrik
+      { pokemonId: 27, typeIds: [14] }, // Sabelette - Sol
+      { pokemonId: 28, typeIds: [14] }, // Sablaireau - Sol
+      { pokemonId: 29, typeIds: [11] }, // Nidoran F - Poison
+      { pokemonId: 30, typeIds: [11] }, // Nidorina - Poison
+      { pokemonId: 31, typeIds: [11, 14] }, // Nidoqueen - Poison, Sol
+      { pokemonId: 32, typeIds: [11] }, // Nidoran M - Poison
+      { pokemonId: 33, typeIds: [11] }, // Nidorino - Poison
+      { pokemonId: 34, typeIds: [11, 14] }, // Nidoking - Poison, Sol
+      { pokemonId: 35, typeIds: [9] }, // Mélofée - Normal
+      { pokemonId: 36, typeIds: [9] }, // Mélodelfe - Normal
+      { pokemonId: 37, typeIds: [6] }, // Goupix - Feu
+      { pokemonId: 38, typeIds: [6] }, // Feunard - Feu
+      { pokemonId: 39, typeIds: [9] }, // Rondoudou - Normal
+      { pokemonId: 40, typeIds: [9] }, // Grodoudou - Normal
+      { pokemonId: 41, typeIds: [11, 17] }, // Nosferapti - Poison, Vol
+      { pokemonId: 42, typeIds: [11, 17] }, // Nosferalto - Poison, Vol
+      { pokemonId: 43, typeIds: [10, 11] }, // Mystherbe - Plante, Poison
+      { pokemonId: 44, typeIds: [10, 11] }, // Ortide - Plante, Poison
+      { pokemonId: 45, typeIds: [10, 11] }, // Rafflesia - Plante, Poison
+      { pokemonId: 46, typeIds: [8, 10] }, // Paras - Insecte, Plante
+      { pokemonId: 47, typeIds: [8, 10] }, // Parasect - Insecte, Plante
+      { pokemonId: 48, typeIds: [8, 11] }, // Mimitoss - Insecte, Poison
+      { pokemonId: 49, typeIds: [8, 11] }, // Aéromite - Insecte, Poison
+      { pokemonId: 50, typeIds: [14] }, // Taupiqueur - Sol
+      { pokemonId: 51, typeIds: [14] }, // Triopikeur - Sol
+      { pokemonId: 52, typeIds: [9] }, // Miaouss - Normal
+      { pokemonId: 53, typeIds: [9] }, // Persian - Normal
+      { pokemonId: 54, typeIds: [4] }, // Psykokwak - Eau
+      { pokemonId: 55, typeIds: [4] }, // Akwakwak - Eau
+      { pokemonId: 56, typeIds: [2] }, // Férosinge - Combat
+      { pokemonId: 57, typeIds: [2] }, // Colossinge - Combat
+      { pokemonId: 58, typeIds: [6] }, // Caninos - Feu
+      { pokemonId: 59, typeIds: [6] }, // Arcanin - Feu
+      { pokemonId: 60, typeIds: [4] }, // Ptitard - Eau
+      { pokemonId: 61, typeIds: [4] }, // Têtarte - Eau
+      { pokemonId: 62, typeIds: [4, 2] }, // Tartard - Eau, Combat
+      { pokemonId: 63, typeIds: [12] }, // Abra - Psy
+      { pokemonId: 64, typeIds: [12] }, // Kadabra - Psy
+      { pokemonId: 65, typeIds: [12] }, // Alakazam - Psy
+      { pokemonId: 66, typeIds: [2] }, // Machoc - Combat
+      { pokemonId: 67, typeIds: [2] }, // Machopeur - Combat
+      { pokemonId: 68, typeIds: [2] }, // Mackogneur - Combat
+      { pokemonId: 69, typeIds: [10, 11] }, // Chétiflor - Plante, Poison
+      { pokemonId: 70, typeIds: [10, 11] }, // Boustiflor - Plante, Poison
+      { pokemonId: 71, typeIds: [10, 11] }, // Empiflor - Plante, Poison
+      { pokemonId: 72, typeIds: [4, 11] }, // Tentacool - Eau, Poison
+      { pokemonId: 73, typeIds: [4, 11] }, // Tentacruel - Eau, Poison
+      { pokemonId: 74, typeIds: [13, 14] }, // Racaillou - Roche, Sol
+      { pokemonId: 75, typeIds: [13, 14] }, // Gravalanch - Roche, Sol
+      { pokemonId: 76, typeIds: [13, 14] }, // Grolem - Roche, Sol
+      { pokemonId: 77, typeIds: [6] }, // Ponyta - Feu
+      { pokemonId: 78, typeIds: [6] }, // Galopa - Feu
+      { pokemonId: 79, typeIds: [4, 12] }, // Ramoloss - Eau, Psy
+      { pokemonId: 80, typeIds: [4, 12] }, // Flagadoss - Eau, Psy
+      { pokemonId: 81, typeIds: [5, 1] }, // Magnéti - Électrik, Acier
+      { pokemonId: 82, typeIds: [5, 1] }, // Magnéton - Électrik, Acier
+      { pokemonId: 83, typeIds: [9, 17] }, // Canarticho - Normal, Vol
+      { pokemonId: 84, typeIds: [9, 17] }, // Doduo - Normal, Vol
+      { pokemonId: 85, typeIds: [9, 17] }, // Dodrio - Normal, Vol
+      { pokemonId: 86, typeIds: [4] }, // Otaria - Eau
+      { pokemonId: 87, typeIds: [4, 7] }, // Lamantine - Eau, Glace
+      { pokemonId: 88, typeIds: [11] }, // Tadmorv - Poison
+      { pokemonId: 89, typeIds: [11] }, // Grotadmorv - Poison
+      { pokemonId: 90, typeIds: [4] }, // Kokiyas - Eau
+      { pokemonId: 91, typeIds: [4, 7] }, // Crustabri - Eau, Glace
+      { pokemonId: 92, typeIds: [15, 11] }, // Fantominus - Spectre, Poison
+      { pokemonId: 93, typeIds: [15, 11] }, // Spectrum - Spectre, Poison
+      { pokemonId: 94, typeIds: [15, 11] }, // Ectoplasma - Spectre, Poison
+      { pokemonId: 95, typeIds: [13, 14] }, // Onix - Roche, Sol
+      { pokemonId: 96, typeIds: [12] }, // Soporifik - Psy
+      { pokemonId: 97, typeIds: [12] }, // Hypnomade - Psy
+      { pokemonId: 98, typeIds: [4] }, // Krabby - Eau
+      { pokemonId: 99, typeIds: [4] }, // Krabboss - Eau
+      { pokemonId: 100, typeIds: [5] }, // Voltorbe - Électrik
+      { pokemonId: 101, typeIds: [5] }, // Électrode - Électrik
+      { pokemonId: 102, typeIds: [10, 12] }, // Nœunœuf - Plante, Psy
+      { pokemonId: 103, typeIds: [10, 12] }, // Noadkoko - Plante, Psy
+      { pokemonId: 104, typeIds: [14] }, // Osselait - Sol
+      { pokemonId: 105, typeIds: [14] }, // Ossatueur - Sol
+      { pokemonId: 106, typeIds: [2] }, // Kicklee - Combat
+      { pokemonId: 107, typeIds: [2] }, // Tygnon - Combat
+      { pokemonId: 108, typeIds: [9] }, // Excelangue - Normal
+      { pokemonId: 109, typeIds: [11] }, // Smogo - Poison
+      { pokemonId: 110, typeIds: [11] }, // Smogogo - Poison
+      { pokemonId: 111, typeIds: [14, 13] }, // Rhinocorne - Sol, Roche
+      { pokemonId: 112, typeIds: [14, 13] }, // Rhinoféros - Sol, Roche
+      { pokemonId: 113, typeIds: [9] }, // Leveinard - Normal
+      { pokemonId: 114, typeIds: [10] }, // Saquedeneu - Plante
+      { pokemonId: 115, typeIds: [9] }, // Kangourex - Normal
+      { pokemonId: 116, typeIds: [4] }, // Hypotrempe - Eau
+      { pokemonId: 117, typeIds: [4] }, // Hypocéan - Eau
+      { pokemonId: 118, typeIds: [4] }, // Poissirène - Eau
+      { pokemonId: 119, typeIds: [4] }, // Poissoroy - Eau
+      { pokemonId: 120, typeIds: [4] }, // Stari - Eau
+      { pokemonId: 121, typeIds: [4, 12] }, // Staross - Eau, Psy
+      { pokemonId: 122, typeIds: [12] }, // M.Mime - Psy
+      { pokemonId: 123, typeIds: [8, 17] }, // Insécateur - Insecte, Vol
+      { pokemonId: 124, typeIds: [7, 12] }, // Lippoutou - Glace, Psy
+      { pokemonId: 125, typeIds: [5] }, // Élektek - Électrik
+      { pokemonId: 126, typeIds: [6] }, // Magmar - Feu
+      { pokemonId: 127, typeIds: [8] }, // Scarabrute - Insecte
+      { pokemonId: 128, typeIds: [9] }, // Tauros - Normal
+      { pokemonId: 129, typeIds: [4] }, // Magicarpe - Eau
+      { pokemonId: 130, typeIds: [4, 17] }, // Léviator - Eau, Vol
+      { pokemonId: 131, typeIds: [4, 7] }, // Lokhlass - Eau, Glace
+      { pokemonId: 132, typeIds: [9] }, // Métamorph - Normal
+      { pokemonId: 133, typeIds: [9] }, // Évoli - Normal
+      { pokemonId: 134, typeIds: [4] }, // Aquali - Eau
+      { pokemonId: 135, typeIds: [5] }, // Voltali - Électrik
+      { pokemonId: 136, typeIds: [6] }, // Pyroli - Feu
+      { pokemonId: 137, typeIds: [9] }, // Porygon - Normal
+      { pokemonId: 138, typeIds: [13, 4] }, // Amonita - Roche, Eau
+      { pokemonId: 139, typeIds: [13, 4] }, // Amonistar - Roche, Eau
+      { pokemonId: 140, typeIds: [13, 4] }, // Kabuto - Roche, Eau
+      { pokemonId: 141, typeIds: [13, 4] }, // Kabutops - Roche, Eau
+      { pokemonId: 142, typeIds: [13, 17] }, // Ptéra - Roche, Vol
+      { pokemonId: 143, typeIds: [9] }, // Ronflex - Normal
+      { pokemonId: 144, typeIds: [7, 17] }, // Artikodin - Glace, Vol
+      { pokemonId: 145, typeIds: [5, 17] }, // Électhor - Électrik, Vol
+      { pokemonId: 146, typeIds: [6, 17] }, // Sulfura - Feu, Vol
+      { pokemonId: 147, typeIds: [3] }, // Minidraco - Dragon
+      { pokemonId: 148, typeIds: [3] }, // Draco - Dragon
+      { pokemonId: 149, typeIds: [3, 17] }, // Dracolosse - Dragon, Vol
+      { pokemonId: 150, typeIds: [12] }, // Mewtwo - Psy
+      { pokemonId: 151, typeIds: [12] }, // Mew - Psy
+    ];
 
-    const herbizarre = await Pokemon.findByPk(2);
-    await herbizarre.setTypes([10, 11]);
+    // Boucle pour associer tous les Pokémons à leurs types
+    for (const { pokemonId, typeIds } of pokemonTypes) {
+      const pokemon = await Pokemon.findByPk(pokemonId);
+      if (pokemon) {
+        await pokemon.setTypes(typeIds);
+      }
+    }
 
-    const florizarre = await Pokemon.findByPk(3);
-    await florizarre.setTypes([10, 11]);
-
-    const salameche = await Pokemon.findByPk(4);
-    await salameche.setTypes([6]); // Feu
-
-    const reptincel = await Pokemon.findByPk(5);
-    await reptincel.setTypes([6]);
-
-    const dracaufeu = await Pokemon.findByPk(6);
-    await dracaufeu.setTypes([6, 17]); // Feu, Vol
-
-    const carapuce = await Pokemon.findByPk(7);
-    await carapuce.setTypes([4]); // Eau
-
-    const carabaffe = await Pokemon.findByPk(8);
-    await carabaffe.setTypes([4]);
-
-    const tortank = await Pokemon.findByPk(9);
-    await tortank.setTypes([4]);
-
-    const pikachu = await Pokemon.findByPk(25);
-    await pikachu.setTypes([5]); // Électrik
-
-    // ... (Je te donne juste quelques exemples, tu peux en ajouter d'autres si besoin)
-
-    console.log("✅ Associations Pokémon ↔ Type créées");
+    console.log("✅ Associations Pokémon ↔ Type créées pour les Pokémons");
 
     // 4. Créer des Teams
     console.log("📝 Création des équipes...");
