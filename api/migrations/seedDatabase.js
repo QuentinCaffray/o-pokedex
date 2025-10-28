@@ -1,4 +1,4 @@
-import { sequelize, Pokemon, Type, Team } from "./models/index.js";
+import { sequelize, Pokemon, Type, Team } from "../models/index.js";
 
 async function seedDatabase() {
   try {

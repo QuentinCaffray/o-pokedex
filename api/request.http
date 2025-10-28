@@ -1,0 +1,5 @@
+### Test Hello World
+GET http://localhost:3000/
+
+### Test de la route GET /pokemons
+GET http://localhost:3000/pokemons
