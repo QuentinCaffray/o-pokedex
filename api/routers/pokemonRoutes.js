@@ -8,11 +8,6 @@ const router = express.Router();
 
 router.get("/", getAllPokemons);
 
-// Route de test statique (dans une fonction !)
-router.get("/test", (req, res) => {
-  res.json({ message: "Route /test fonctionne !" });
-});
-
 router.get("/:id", getPokemonById);
 
 export default router;
