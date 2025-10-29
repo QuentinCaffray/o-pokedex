@@ -45,3 +45,11 @@ DELETE http://localhost:3000/teams/1/pokemons/25
 
 ### 7. Supprimer l'équipe 1
 DELETE http://localhost:3000/teams/1
+
+
+
+### Récupérer tous les types
+GET http://localhost:3000/types
+
+### Récupérer un type avec ses pokémons (exemple: type Feu, id=10)
+GET http://localhost:3000/types/6

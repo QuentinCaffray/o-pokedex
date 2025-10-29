@@ -1,7 +1,10 @@
 import express from "express";
+import { getAllTypes, getTypeById } from "../controllers/typeController.js";
 
 const router = express.Router();
 
-// Routes à venir...
+router.get("/", getAllTypes);
+
+router.get("/:id", getTypeById);
 
 export default router;
