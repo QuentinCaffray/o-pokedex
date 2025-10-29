@@ -1736,6 +1736,18 @@ async function seedDatabase() {
     await team3.setPokemons([151, 150, 149, 146, 145, 144]);
 
     console.log("✅ Associations Team ↔ Pokémon créées");
+    // Réinitialiser les séquences auto-increment
+    await sequelize.query(
+      `SELECT setval('pokemon_id_seq', (SELECT MAX(id) FROM pokemon));`
+    );
+    await sequelize.query(
+      `SELECT setval('type_id_seq', (SELECT MAX(id) FROM type));`
+    );
+    await sequelize.query(
+      `SELECT setval('team_id_seq', (SELECT MAX(id) FROM team));`
+    ); // ← Cette ligne !
+
+    console.log("✅ Séquences réinitialisées");
 
     console.log("🎉 Seeding terminé avec succès !");
   } catch (error) {

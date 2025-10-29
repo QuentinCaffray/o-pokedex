@@ -9,15 +9,16 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware pour parser le JSON
 app.use(express.json());
-
-app.use("/pokemons", pokemonRoutes);
-app.use("/teams", teamRoutes);
-app.use("/types", typeRoutes);
+app.use(express.urlencoded({ extended: true }));
 
 // Route de test
 app.get("/", (req, res) => {
   res.json({ message: "Hello World! Bienvenue sur l'API Pokédex 🔥" });
 });
+
+app.use("/pokemons", pokemonRoutes);
+app.use("/teams", teamRoutes);
+app.use("/types", typeRoutes);
 
 // Démarrage du serveur
 async function startServer() {
