@@ -88,3 +88,34 @@ Content-Type: application/json
   "email": "test@pokemon.com",
   "password": "wrongpassword"
 }
+
+
+
+
+
+### Créer une équipe SANS token (doit renvoyer 401)
+POST http://localhost:3000/teams
+Content-Type: application/json
+
+{
+  "name": "Team Test"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@pokemon.com",
+  "password": "password123"
+}
+
+### Créer une équipe AVEC token (doit renvoyer 201)
+POST http://localhost:3000/teams
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzdEBwb2tlbW9uLmNvbSIsImlhdCI6MTc2MTgzNzI4NiwiZXhwIjoxNzYxODQwODg2fQ.lIkyFUxjL3Tb5wfzckVNKqOY4EZK_swCTA6faK-Kxq0
+
+{
+  "name": "Team Protégée",
+  "description": "Créée avec authentification"
+}
