@@ -1,6 +1,7 @@
 import { Pokemon } from "./Pokemon.js";
 import { Type } from "./Type.js";
 import { Team } from "./Team.js";
+import { User } from "./User.js";
 import { sequelize } from "./sequelize.js";
 
 Pokemon.belongsToMany(Type, {
@@ -31,4 +32,4 @@ Pokemon.belongsToMany(Team, {
   as: "teams",
 });
 
-export { Pokemon, Type, Team, sequelize };
+export { Pokemon, Type, Team, User, sequelize };

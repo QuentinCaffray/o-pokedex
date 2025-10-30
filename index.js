@@ -3,6 +3,7 @@ import { sequelize } from "./api/models/sequelize.js";
 import pokemonRoutes from "./api/routers/pokemonRoutes.js";
 import teamRoutes from "./api/routers/teamRoutes.js";
 import typeRoutes from "./api/routers/typeRoutes.js";
+import authRoutes from "./api/routers/authRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 app.use("/pokemons", pokemonRoutes);
 app.use("/teams", teamRoutes);
 app.use("/types", typeRoutes);
+app.use("/auth", authRoutes);
 
 // Démarrage du serveur
 async function startServer() {

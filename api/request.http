@@ -48,8 +48,43 @@ DELETE http://localhost:3000/teams/1
 
 
 
+
+
+
 ### Récupérer tous les types
 GET http://localhost:3000/types
 
 ### Récupérer un type avec ses pokémons (exemple: type Feu, id=10)
 GET http://localhost:3000/types/6
+
+
+
+
+
+### Inscription
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test@pokemon.com",
+  "password": "password123",
+  "verifyPassword": "password123"
+}
+
+### Connexion
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@pokemon.com",
+  "password": "password123"
+}
+
+### Test avec mauvais password
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@pokemon.com",
+  "password": "wrongpassword"
+}
