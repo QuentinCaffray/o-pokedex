@@ -18,7 +18,7 @@ Projet réalisé dans le cadre de ma formation de développeur web full-stack ch
 - **Base de données** : PostgreSQL
 - **ORM** : Sequelize
 - **Authentification** : Argon2, JWT
-- **Architecture** : MVC (Models, Controllers, Routes)
+- **Architecture** : MVC (Models, Controllers, Routers)
 
 ## 📦 Installation
 
@@ -84,41 +84,44 @@ L'API sera accessible sur `http://localhost:3000`
 
 ### Authentification
 
-- `POST /api/auth/register` - Inscription d'un nouvel utilisateur
+- `POST /api/auth/signup` - Inscription d'un nouvel utilisateur
 - `POST /api/auth/login` - Connexion (retourne un JWT)
 
 ### Pokémon
 
 - `GET /api/pokemon` - Liste tous les Pokémon
 - `GET /api/pokemon/:id` - Détails d'un Pokémon spécifique
-- `POST /api/pokemon` - Créer un Pokémon _(authentification requise)_
-- `PATCH /api/pokemon/:id` - Modifier un Pokémon _(authentification requise)_
-- `DELETE /api/pokemon/:id` - Supprimer un Pokémon _(authentification requise)_
+
+### Types
+
+- `GET /api/types` - Liste tous les types de Pokémon
+- `GET /api/types/:id` - Détails d'un type spécifique
 
 ### Équipes
 
-- `GET /api/teams` - Liste toutes les équipes _(authentification requise)_
+- `GET /api/teams` - Liste toutes les équipes
 - `GET /api/teams/:id` - Détails d'une équipe
 - `POST /api/teams` - Créer une équipe _(authentification requise)_
 - `PATCH /api/teams/:id` - Modifier une équipe _(authentification requise)_
 - `DELETE /api/teams/:id` - Supprimer une équipe _(authentification requise)_
-- `POST /api/teams/:id/pokemon` - Ajouter un Pokémon à une équipe
-- `DELETE /api/teams/:id/pokemon/:pokemonId` - Retirer un Pokémon d'une équipe
+- `POST /api/teams/:id/pokemons` - Ajouter un Pokémon à une équipe _(authentification requise)_
+- `DELETE /api/teams/:id/pokemons/:pokemonId` - Retirer un Pokémon d'une équipe _(authentification requise)_
 
 ## 🏗️ Structure du projet
 
 ```
 o-pokedex/
-├── src/
-│   ├── controllers/      # Logique métier
-│   ├── models/           # Modèles Sequelize (Pokémon, Team, User)
-│   ├── routes/           # Définition des routes Express
-│   ├── middlewares/      # Auth, validation, gestion d'erreurs
-│   ├── config/           # Configuration base de données
-│   └── types/            # Types TypeScript personnalisés
 ├── api/
-│   └── data/             # Scripts SQL et seeds
-├── .env.example          # Template des variables d'environnement
+│   ├── controllers/       # Logique métier (auth, pokemon, team, type)
+│   ├── routers/           # Définition des routes Express
+│   ├── models/            # Modèles Sequelize (Pokemon, Team, Type, User)
+│   ├── middlewares/       # Authentification et validation
+│   ├── migrations/        # Scripts de création et seeding de la DB
+│   └── data/
+│       └── sqlVersion/    # Versions SQL des migrations (référence)
+├── docs/                  # Documentation du projet
+├── .env.example           # Template des variables d'environnement
+├── index.js               # Point d'entrée de l'application
 └── package.json
 ```
 
