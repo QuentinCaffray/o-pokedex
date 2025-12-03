@@ -14,7 +14,7 @@ Projet réalisé dans le cadre de ma formation de développeur web full-stack ch
 
 ## 🛠️ Stack technique
 
-- **Backend** : Node.js, Express, TypeScript
+- **Backend** : Node.js, Express
 - **Base de données** : PostgreSQL
 - **ORM** : Sequelize
 - **Authentification** : Argon2, JWT
@@ -72,10 +72,9 @@ npm run db:seed
 5. **Lance le serveur**
 
 ```bash
-npm run dev          # Mode développement avec hot-reload
+npm run dev          # Mode développement
 # ou
-npm run build        # Compile TypeScript
-npm start            # Lance la version production
+npm start            # Production
 ```
 
 L'API sera accessible sur `http://localhost:3000`
@@ -128,7 +127,6 @@ o-pokedex/
 ## 📝 Scripts disponibles
 
 - `npm run dev` - Lance le serveur en mode développement
-- `npm run build` - Compile TypeScript vers JavaScript
 - `npm start` - Lance le serveur en production
 - `npm run db:create` - Crée la base de données PostgreSQL
 - `npm run db:migrate` - Applique les migrations Sequelize
